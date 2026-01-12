@@ -10,6 +10,9 @@ def index():
 def handleliste():
     return render_template('handleliste.html')
 
+@app.route('/kategorier')
+def kategorier():
+    return render_template('kategorier.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
