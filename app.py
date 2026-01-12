@@ -6,6 +6,10 @@ app = Flask(__name__, template_folder="template", static_folder="static")
 def index():
     return render_template('index.html')
 
+@app.route('/handleliste')
+def handleliste():
+    return render_template('handleliste.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
-
