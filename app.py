@@ -1,10 +1,9 @@
-from flask import Flask
+from flask import Flask, render_template, request, redirect
+from handleliste import legg_til_vare, hent_liste
+form lagring import last_liste, lagre_liste
 
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello World'
+handleliste = last_liste()
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/', methods=['GET', 'POST'])
