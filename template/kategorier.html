@@ -7,9 +7,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}" class="nav-brand {% if active_page == 'index' %}active{% endif %}">Velkommen til din Handleliste</a>
+        <div class="nav-right">
+            <a href="{{ url_for('handleliste') }}" class="nav-link {% if active_page == 'handleliste' %}active{% endif %}">Handleliste</a>
+            <a href="{{ url_for('kategorier') }}" class="nav-link {% if active_page == 'kategorier' %}active{% endif %}">Kategorier</a>
+        </div>
+    </nav>
+
     <div class="container">
         <h1>Kategorier</h1>
-        <p><a href="/">Tilbake til start</a></p>
     </div>
 </body>
 </html>
