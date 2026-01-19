@@ -15,9 +15,12 @@
         </div>
     </nav>
 
-    <div class="container">
-        <h1>Velkommen til din handleliste!</h1>
-        <img src="{{ url_for('static', filename='img/Middag.jpg') }}" alt="Banner for handleliste" class="banner">
+    <div class="banner">
+    <h1>Velkommen til din handleliste!</h1>
     </div>
+    <div class="container">
+    <h1> Dette er en test</h1>
+        {% block content %}{% endblock %}
+
 </body>
 </html>
