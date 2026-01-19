@@ -51,6 +51,7 @@ body {
 .container {
     padding: 0;
     text-align: center;
+    color: #000000;
 }
 
 .banner {
@@ -73,3 +74,12 @@ body {
     margin: 0;
 }
 
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
