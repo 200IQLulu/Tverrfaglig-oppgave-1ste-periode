@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Logg inn{% endblock %}
+
+{% block content %}
+    <h1>Logg inn</h1>
+    <form method="POST" action="/login">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.username.label }} {{ form.username() }} <br>
+        </div>
+        <div class="form-group">
+            {{ form.password.label }} {{ form.password() }} <br>
+        </div>
+        {{ form.submit() }}
+        {% for feilmelding in form.username.errors %}
+            <p style="color:red;">{{ feilmelding }}</p>
+        {% endfor %}
+    </form>
+    <p>Har du ikke konto? <a href="{{ url_for('register') }}">Registrer her</a></p>
+{% endblock %}

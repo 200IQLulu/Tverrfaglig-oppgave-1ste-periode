@@ -1,26 +1,36 @@
-<!DOCTYPE html>
-<html lang="no">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Handlelisten</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <nav class="navbar">
-        <a href="{{ url_for('index') }}" class="nav-brand {% if active_page == 'index' %}active{% endif %}">Velkommen til din Handleliste</a>
-        <div class="nav-right">
-            <a href="{{ url_for('handleliste') }}" class="nav-link {% if active_page == 'handleliste' %}active{% endif %}">Min Handleliste</a>
-            <a href="{{ url_for('kategorier') }}" class="nav-link {% if active_page == 'kategorier' %}active{% endif %}">Kategorier</a>
-        </div>
-    </nav>
+{% extends "base.html" %}
 
-    <div class="container">
+{% block title %}Min Handleliste{% endblock %}
+
+{% block content %}
+    {% if not innlogget %}
+        <h1>Logg inn for å se handlelisten</h1>
+
+        {% if login_error %}
+            <p style="color:red;">{{ login_error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            <input name="bruker" placeholder="Brukernavn" required>
+            <input name="passord" type="password" placeholder="Passord" required>
+            <button>Logg inn</button>
+        </form>
+    {% else %}
         <h1>Min Handleliste</h1>
-    </div>
+        <p>Hei {{ session['bruker_navn'] }} </p>
 
-    <footer class="footer">
-        <p>&copy; 2026 Handleliste. Laget av Ludvig Meland Egeberg</p>
-    </footer>
-</body>
-</html>
+        <form method="POST">
+            <input name="vare" placeholder="Ny vare" required>
+            <button>Legg til</button>
+        </form>
+
+        <ul>
+          {% for v in varer %}
+            <li>{{ v.vare }}</li>
+          {% endfor %}
+        </ul>
+
+        <a href="/logout">Logg ut</a>
+    {% endif %}
+{% endblock %}
+
