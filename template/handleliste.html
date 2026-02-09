@@ -19,27 +19,39 @@
         <p>Har du ikke konto? <a href="{{ url_for('register') }}">Registrer her</a></p>
     {% else %}
         <h1>Min Handleliste</h1>
-        <p>Hei {{ session['bruker_navn'] }} </p>
+        <p>Hei {{ session['bruker_navn'] }}</p>
 
-        <form method="POST" action="/add_vare">
-            <input name="vare" placeholder="Ny vare" required>
-            <button type="submit">Legg til</button>
-        </form>
+        <div class="handleliste-wrapper">
+            <h2 class="handleliste-tittel">Handleliste</h2>
 
-        <!-- SLETT MED CHECKBOX -->
-        <form method="POST" action="/slett_varer">
-            <ul>
-              {% for v in varer %}
-                <li>
-                    <input type="checkbox" name="slett_ids" value="{{ v.id }}">
-                    {{ v.vare }}
-                </li>
-              {% endfor %}
-            </ul>
+            <!-- Legg til vare -->
+            <form method="POST" action="/add_vare" class="add-form">
+                <input name="vare" placeholder="Ny vare" required>
+                <button type="submit">Legg til</button>
+            </form>
 
-            <button type="submit">Fjern valgte</button>
-        </form>
+            <!-- Slett med checkbox -->
+            <form method="POST" action="/slett_varer">
+                <ul class="handleliste-liste">
+                  {% for v in varer %}
+                    <li class="handleliste-item">
+                        <label>
+                            <input type="checkbox" name="slett_ids" value="{{ v.id }}">
+                            {{ v.vare }}
+                        </label>
+                    </li>
+                  {% endfor %}
+                </ul>
+
+                <button type="submit" class="slett-knapp">Fjern valgte</button>
+            </form>
+        </div>
 
         <a href="/logout">Logg ut</a>
+
+        <!-- Slett bruker knapp -->
+        <form method="POST" action="{{ url_for('slett_bruker') }}">
+            <button type="submit" class="slett-bruker-btn">Slett konto</button>
+        </form>
     {% endif %}
 {% endblock %}

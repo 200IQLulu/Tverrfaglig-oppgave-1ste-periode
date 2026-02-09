@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
@@ -82,4 +82,101 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+/* Gir luft fra navbar og fixed footer */
+.container {
+    padding: 30px 20px;
+    text-align: center;
+    padding-bottom: 90px;
+}
+
+/* Handleliste-boksen */
+.handleliste-wrapper {
+    margin: 25px auto;
+    padding: 20px;
+    max-width: 520px;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+}
+
+.handleliste-tittel {
+    margin: 0 0 15px 0;
+}
+
+/* Input + knapp på en linje */
+.add-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.add-form input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* Liste */
+.handleliste-liste {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.handleliste-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.handleliste-item:last-child {
+    border-bottom: none;
+}
+
+.slett-knapp {
+    margin-top: 15px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.auth-links {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;       
+    justify-content: center;
+}
+
+.auth-links .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    background-color: #667eea; 
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.auth-links .btn:hover {
+    background-color: #5568d6; 
+}
+
+.slett-bruker-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 20px;
+    background-color: #e74c3c; /* sterk rød */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.slett-bruker-btn:hover {
+    background-color: #c0392b; /* mørkere rød ved hover */
 }

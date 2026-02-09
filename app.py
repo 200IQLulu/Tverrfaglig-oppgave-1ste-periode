@@ -46,7 +46,10 @@ def register():
             conn.commit()
             cur.close()
             conn.close()
-            return redirect("/login")
+            session['brukernavn'] = brukernavn
+            session['bruker_navn'] = navn
+            return redirect("/handleliste")
+
         except Exception as e:
             # Håndterer feil, f.eks. hvis brukernavn allerede eksisterer
             print(f"Error during registration: {e}")
@@ -202,6 +205,31 @@ def slett_varer():
         print(f"Error deleting items: {e}")
 
     return redirect("/handleliste")
+
+@app.route('/slett_bruker', methods=["POST"])
+def slett_bruker():
+    # Sjekk om noen er innlogget
+    if 'brukernavn' not in session:
+        return redirect('/login')
+
+    brukernavn = session['brukernavn']
+
+    try:
+        conn = get_conn()
+        cur = conn.cursor()
+        # Slett brukeren fra kundetabellen
+        cur.execute("DELETE FROM kunder WHERE brukernavn=%s", (brukernavn,))
+        # Slett alle varer tilknyttet brukeren
+        cur.execute("DELETE FROM handlelistvarer WHERE brukernavn=%s", (brukernavn,))
+        conn.commit()
+        cur.close()
+        conn.close()
+        # Tøm sesjonen
+        session.clear()
+    except Exception as e:
+        print(f"Error deleting user: {e}")
+
+    return redirect('/')
 
 
 @app.route('/kategorier')
