@@ -173,6 +173,37 @@ def add_vare():
     
     return redirect("/handleliste")
 
+@app.route("/slett_varer", methods=["POST"])
+def slett_varer():
+    if 'brukernavn' not in session:
+        return redirect("/handleliste")
+
+    ids = request.form.getlist("slett_ids")  # henter alle avkryssede
+
+    if not ids:
+        return redirect("/handleliste")
+
+    try:
+        conn = get_conn()
+        cur = conn.cursor()
+
+        # Slett bare varer som tilhører brukeren (viktig!)
+        for vare_id in ids:
+            cur.execute(
+                "DELETE FROM handlelistvarer WHERE id=%s AND brukernavn=%s",
+                (vare_id, session['brukernavn'])
+            )
+
+        conn.commit()
+        cur.close()
+        conn.close()
+
+    except Exception as e:
+        print(f"Error deleting items: {e}")
+
+    return redirect("/handleliste")
+
+
 @app.route('/kategorier')
 def kategorier():
     """Viser kategori-siden"""

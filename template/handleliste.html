@@ -26,13 +26,20 @@
             <button type="submit">Legg til</button>
         </form>
 
-        <ul>
-          {% for v in varer %}
-            <li>{{ v.vare }}</li>
-          {% endfor %}
-        </ul>
+        <!-- SLETT MED CHECKBOX -->
+        <form method="POST" action="/slett_varer">
+            <ul>
+              {% for v in varer %}
+                <li>
+                    <input type="checkbox" name="slett_ids" value="{{ v.id }}">
+                    {{ v.vare }}
+                </li>
+              {% endfor %}
+            </ul>
+
+            <button type="submit">Fjern valgte</button>
+        </form>
 
         <a href="/logout">Logg ut</a>
     {% endif %}
 {% endblock %}
-
