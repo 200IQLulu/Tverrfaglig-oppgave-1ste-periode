@@ -13,3 +13,8 @@ class LoginForm(FlaskForm):
     password = PasswordField("Passord", validators=[InputRequired()])
     submit = SubmitField("Logg inn")
 
+class VareForm(FlaskForm):
+    """Skjema for å legge til ny vare på handlelisten"""
+    vare = StringField("Ny vare", validators=[InputRequired()])
+    submit = SubmitField("Legg til")
+

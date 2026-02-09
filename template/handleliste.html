@@ -21,9 +21,9 @@
         <h1>Min Handleliste</h1>
         <p>Hei {{ session['bruker_navn'] }} </p>
 
-        <form method="POST">
+        <form method="POST" action="/add_vare">
             <input name="vare" placeholder="Ny vare" required>
-            <button>Legg til</button>
+            <button type="submit">Legg til</button>
         </form>
 
         <ul>
