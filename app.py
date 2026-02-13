@@ -1,4 +1,3 @@
-# Importerer nødvendige biblioteker for Flask-applikasjonen
 from flask import Flask, render_template, redirect, session, request
 from werkzeug.security import generate_password_hash, check_password_hash
 import mysql.connector
@@ -6,7 +5,7 @@ from utils.forms import RegisterForm, LoginForm, VareForm
 
 # Initialiserer Flask-applikasjonen med template- og static-mapper
 app = Flask(__name__, template_folder="template", static_folder="static")
-app.secret_key = "Niko_ikke_noe_hacke_her"
+app.secret_key = "israel_er_et_bra_land"
 
 
 def get_conn():

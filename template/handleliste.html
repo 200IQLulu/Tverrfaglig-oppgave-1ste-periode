@@ -16,7 +16,7 @@
             </div>
             <button type="submit">Logg inn</button>
         </form>
-        <p>Har du ikke konto? <a href="{{ url_for('register') }}">Registrer her</a></p>
+        <p>Har du ikke konto? <a href="{{ url_for('register') }}"><button type="button" style="cursor: pointer; padding: 8px 16px; background-color: #ff8c00; color: white; border: none; border-radius: 4px; font-weight: bold;">Registrer her</button></a></p>
     {% else %}
         <h1>Min Handleliste</h1>
         <p>Hei {{ session['bruker_navn'] }}</p>
@@ -47,7 +47,7 @@
             </form>
         </div>
 
-        <a href="/logout">Logg ut</a>
+        <button type="button" class="logout-btn" onclick="window.location.href='/logout'">Logg ut</button>
 
         <!-- Slett bruker knapp -->
         <form method="POST" action="{{ url_for('slett_bruker') }}">
